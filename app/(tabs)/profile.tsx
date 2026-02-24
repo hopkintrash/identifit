@@ -1,0 +1,306 @@
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
+import {
+  ChartBar as BarChart3,
+  UserPlus,
+  Settings,
+  Users,
+  Lock,
+} from 'lucide-react-native';
+import { useOOTD } from '@/hooks/useOOTD';
+import { currentUser } from '@/data/ootd';
+import OOTDCard from '@/components/OOTDCard';
+import { spacing, fontSize, size, radius } from '@/lib/theme';
+
+const { width } = Dimensions.get('window');
+
+export default function ProfileScreen() {
+  const [activeTab, setActiveTab] = useState<'posts' | 'saved'>('posts');
+  const { userOOTDs, toggleOOTDLike } = useOOTD();
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Top Navigation */}
+        <View style={styles.topNav}>
+          <TouchableOpacity style={styles.navButton}>
+            <BarChart3 size={24} color="#ffffff" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton}>
+            <UserPlus size={24} color="#ffffff" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton}>
+            <Settings size={24} color="#ffffff" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Profile Section */}
+        <View style={styles.profileSection}>
+          {/* Profile Picture */}
+          <View style={styles.profilePictureContainer}>
+            <Image
+              source={require('@/assets/images/image.png')}
+              style={styles.profilePicture}
+            />
+          </View>
+
+          {/* Name */}
+          <Text style={styles.name}>{currentUser.name}</Text>
+
+          {/* Stats */}
+          <View style={styles.statsContainer}>
+            <Text style={styles.username}>@jacqfly</Text>
+            <Text style={styles.separator}>.</Text>
+            <View style={styles.statItem}>
+              <Text style={styles.statText}>13 friends</Text>
+            </View>
+            <Text style={styles.separator}>.</Text>
+            <View style={styles.statItem}>
+              <Image
+                source={require('@/assets/images/Group 46129.png')}
+                style={styles.streakIcon}
+              />
+              <Text style={styles.streakNumber}>23</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Tab Navigation */}
+        <View style={styles.tabNavigation}>
+          <TouchableOpacity
+            style={[styles.tab, activeTab === 'posts' && styles.activeTab]}
+            onPress={() => setActiveTab('posts')}
+          >
+            <Text
+              style={[
+                styles.tabText,
+                activeTab === 'posts' && styles.activeTabText,
+              ]}
+            >
+              Posts
+            </Text>
+            {activeTab === 'posts' && (
+              <View style={styles.activeTabIndicator} />
+            )}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.tab, activeTab === 'saved' && styles.activeTab]}
+            onPress={() => setActiveTab('saved')}
+          >
+            <View style={styles.savedTabContent}>
+              <Text
+                style={[
+                  styles.tabText,
+                  activeTab === 'saved' && styles.activeTabText,
+                ]}
+              >
+                Saved Posts
+              </Text>
+              <Lock
+                size={16}
+                color={activeTab === 'saved' ? '#ffffff' : '#757575'}
+              />
+            </View>
+            {activeTab === 'saved' && (
+              <View style={styles.activeTabIndicator} />
+            )}
+          </TouchableOpacity>
+        </View>
+
+        {/* Content Grid */}
+        <View style={styles.contentContainer}>
+          {activeTab === 'posts' && (
+            <View style={styles.ootdsGrid}>
+              {userOOTDs.map((ootd) => (
+                <OOTDCard
+                  key={ootd.id}
+                  ootd={ootd}
+                  user={currentUser}
+                  onLike={toggleOOTDLike}
+                  showUser={false}
+                />
+              ))}
+            </View>
+          )}
+
+          {activeTab === 'saved' && (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No saved posts yet</Text>
+            </View>
+          )}
+
+          {activeTab === 'posts' && userOOTDs.length === 0 && (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyStateText}>No OOTDs yet</Text>
+              <Text style={styles.emptyStateSubtext}>
+                Start sharing your daily outfits!
+              </Text>
+            </View>
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  topNav: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingHorizontal: spacing.xxl,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.lg,
+    gap: spacing.xxl,
+  },
+  navButton: {
+    width: size.touch,
+    height: size.touch,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: radius.pill,
+  },
+  profileSection: {
+    alignItems: 'center',
+    paddingBottom: spacing.xxxl,
+  },
+  profilePictureContainer: {
+    width: size.avatarXl,
+    height: size.avatarXl,
+    borderRadius: size.avatarMd,
+    overflow: 'hidden',
+    marginBottom: spacing.xxl,
+    backgroundColor: '#ffffff',
+  },
+  profilePicture: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  name: {
+    color: '#ffffff',
+    fontSize: fontSize.lg,
+    marginBottom: spacing.lg,
+    fontFamily: 'Caladea-Regular',
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  username: {
+    color: '#ffffff',
+    fontSize: fontSize.base,
+  },
+  separator: {
+    color: '#ffffff',
+    fontSize: fontSize.base,
+    marginBottom: spacing.md,
+  },
+  statItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
+  statText: {
+    color: '#ffffff',
+    fontSize: fontSize.base,
+  },
+  streakIcon: {
+    width: size.iconXs,
+    height: size.iconMd,
+    resizeMode: 'contain',
+  },
+  streakNumber: {
+    color: '#757EFA',
+    fontSize: fontSize.base,
+    fontWeight: 'bold',
+  },
+  tabNavigation: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#4B5563',
+    paddingHorizontal: spacing.xxl,
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: spacing.lg,
+    alignItems: 'center',
+    position: 'relative',
+  },
+  activeTab: {
+    // Additional styling for active tab if needed
+  },
+  tabText: {
+    fontSize: fontSize.sm,
+    fontWeight: '400',
+    color: '#757575',
+    fontFamily: 'Helvetica Neue',
+  },
+  activeTabText: {
+    color: '#C0D1FF',
+    fontWeight: '500',
+  },
+  savedTabContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  activeTabIndicator: {
+    position: 'absolute',
+    bottom: -1,
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: '#C0D1FF',
+  },
+  contentContainer: {
+    flex: 1,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.lg,
+  },
+  ootdsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  emptyState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: size.avatarMd,
+  },
+  emptyStateText: {
+    color: '#9CA3AF',
+    fontSize: fontSize.base,
+    textAlign: 'center',
+    fontFamily: 'System',
+  },
+  emptyStateSubtext: {
+    color: '#6B7280',
+    fontSize: fontSize.sm,
+    textAlign: 'center',
+    fontFamily: 'System',
+    marginTop: spacing.sm,
+  },
+});
