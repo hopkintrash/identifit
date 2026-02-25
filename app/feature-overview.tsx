@@ -14,7 +14,6 @@ import {
   Caladea_400Regular,
   Caladea_700Bold,
 } from '@expo-google-fonts/caladea';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
   },
   skipText: {
     color: '#FFFFFF',
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontWeight: '400',
   },
   imageContainer: {
@@ -207,19 +206,19 @@ const styles = StyleSheet.create({
     top: '40%',
     left: '50%',
     transform: [{ translateX: -150 }, { translateY: -150 }],
-    width: size.filterTile * 3,
-    height: size.filterTile * 3,
+    width: 300,
+    height: 300,
     justifyContent: 'center',
     alignItems: 'center',
   },
   slideImage: {
-    width: size.filterTile * 3,
-    height: size.filterTile * 3,
+    width: 300,
+    height: 300,
   },
   galleryContainer: {
-    width: size.filterTile * 2,
-    height: size.filterTile * 2,
-    borderRadius: spacing.sm,
+    width: 200,
+    height: 200,
+    borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',
   },
@@ -230,22 +229,22 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     position: 'absolute',
-    bottom: size.avatarSm,
-    left: spacing.xxxl,
-    right: spacing.xxxl,
+    bottom: 60,
+    left: 29,
+    right: 29,
   },
   textContent: {
-    marginBottom: size.avatarSm,
+    marginBottom: 60,
   },
   title: {
     fontFamily: 'Caladea-Regular',
-    fontSize: fontSize.xxxl,
+    fontSize: 32,
     lineHeight: 38,
     color: '#C0D1FF',
-    marginBottom: spacing.lg,
+    marginBottom: 16,
   },
   description: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     lineHeight: 24,
     color: '#B5AFA9',
     maxWidth: 335,
@@ -258,24 +257,24 @@ const styles = StyleSheet.create({
   dotsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 8,
   },
   dot: {
-    height: size.handleHeight,
-    borderRadius: radius.xs,
+    height: 4,
+    borderRadius: 2,
   },
   dotActive: {
-    width: spacing.xxxl,
+    width: 32,
     backgroundColor: '#C0D1FF',
   },
   dotInactive: {
-    width: size.handleHeight,
+    width: 4,
     backgroundColor: 'rgba(192, 209, 255, 0.3)',
   },
   nextButton: {
-    width: size.avatarSm,
-    height: size.avatarSm,
-    borderRadius: size.touchLg,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: '#C0D1FF',
     justifyContent: 'center',
     alignItems: 'center',

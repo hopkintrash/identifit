@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { House } from 'lucide-react-native';
-import { spacing, fontSize } from '@/lib/theme';
 
 export default function LinksScreen() {
   return (
@@ -24,17 +23,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: spacing.xl,
+    padding: 20,
   },
   title: {
-    fontSize: fontSize.xl,
+    fontSize: 24,
     fontWeight: '600',
     color: '#ffffff',
-    marginTop: spacing.xl,
-    marginBottom: spacing.md,
+    marginTop: 20,
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     color: '#9CA3AF',
     textAlign: 'center',
   },

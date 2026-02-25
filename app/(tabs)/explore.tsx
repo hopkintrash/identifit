@@ -22,7 +22,6 @@ import {
   WorkSans_600SemiBold,
 } from '@expo-google-fonts/work-sans';
 import FilterSortSheet from '@/components/FilterSortSheet';
-import { spacing, fontSize, size, radius, shadow } from '@/lib/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -187,54 +186,54 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
   },
   header: {
-    paddingHorizontal: spacing.xxl,
-    paddingTop: spacing.xl,
-    paddingBottom: spacing.lg,
+    paddingHorizontal: 24,
+    paddingTop: 20,
+    paddingBottom: 16,
   },
   headerTitle: {
-    fontSize: fontSize.xxl,
+    fontSize: 25,
     fontFamily: 'Caladea-Bold',
     color: '#FFFFFF',
   },
   content: {
     flex: 1,
-    paddingHorizontal: spacing.xxl,
+    paddingHorizontal: 24,
   },
   searchContainer: {
-    marginBottom: spacing.xxl,
+    marginBottom: 24,
   },
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#424242',
-    borderRadius: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.lg,
-    gap: spacing.lg,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 12,
   },
   searchInput: {
     flex: 1,
-    fontSize: fontSize.base,
+    fontSize: 16,
     fontFamily: 'System',
     color: '#FFFFFF',
   },
   tabContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.xl,
-    gap: spacing.md,
+    marginBottom: 20,
+    gap: 18,
   },
   tab: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-    borderRadius: radius.round,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 20,
     backgroundColor: 'transparent',
   },
   activeTab: {
     backgroundColor: '#A8B3FF',
   },
   tabText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontFamily: 'System',
     color: '#FFFFFF',
   },
@@ -243,38 +242,38 @@ const styles = StyleSheet.create({
   },
   sparklesContainer: {
     flexDirection: 'row',
-    gap: spacing.xs,
+    gap: 4,
     flex: 1,
     justifyContent: 'center',
   },
   sparkleEmoji: {
-    fontSize: fontSize.base,
+    fontSize: 16,
   },
   settingsButton: {
-    padding: spacing.sm,
+    padding: 8,
   },
   subtitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.xxl,
-    gap: spacing.lg,
+    marginBottom: 24,
+    gap: 12,
   },
   subtitle: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'Helvetica Neue',
     color: '#9CA3AF',
   },
   masonryContainer: {
     flexDirection: 'row',
-    gap: spacing.lg,
-    paddingBottom: size.filterTile,
+    gap: 12,
+    paddingBottom: 100,
   },
   masonryColumn: {
     flex: 1,
-    gap: spacing.lg,
+    gap: 12,
   },
   gridItem: {
-    borderRadius: radius.xxl,
+    borderRadius: 16,
     overflow: 'hidden',
   },
   gridImage: {
@@ -284,22 +283,25 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     position: 'absolute',
-    bottom: size.filterTile,
-    right: spacing.xxl,
-    width: size.avatarSm,
-    height: size.avatarSm,
-    borderRadius: size.iconLg,
+    bottom: 100,
+    right: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     backgroundColor: '#A8B3FF',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: shadow.md,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 0.3,
-    shadowRadius: spacing.sm,
+    shadowRadius: 8,
     elevation: 8,
   },
   floatingButtonText: {
-    fontSize: fontSize.xl,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#000000',
   },

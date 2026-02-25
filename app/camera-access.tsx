@@ -16,7 +16,6 @@ import {
   Caladea_400Regular,
   Caladea_700Bold,
 } from '@expo-google-fonts/caladea';
-import { spacing, fontSize, size, radius, shadow } from '@/lib/theme';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -112,48 +111,51 @@ const styles = StyleSheet.create({
   },
   skipText: {
     color: '#FFFFFF',
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontWeight: '400',
   },
   contentContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingHorizontal: spacing.xxxl,
+    paddingHorizontal: 29,
     paddingTop: 180,
-    paddingBottom: size.avatarSm,
+    paddingBottom: 60,
   },
   textContainer: {
     flex: 1,
   },
   title: {
     fontFamily: 'Caladea_400Regular',
-    fontSize: fontSize.xxxl,
+    fontSize: 30,
     lineHeight: 35,
     color: '#C0D1FF',
-    marginBottom: spacing.xxl,
+    marginBottom: 24,
   },
   description: {
     fontFamily: 'Helvetica Neue',
-    fontSize: fontSize.base,
+    fontSize: 15,
     lineHeight: 18,
     color: '#B5AFA9',
     maxWidth: 287,
   },
   enableButton: {
     backgroundColor: '#A8B3FF',
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xxxl,
-    borderRadius: radius.lg,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 12,
     width: '100%',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: shadow.sm,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: radius.xs,
+    shadowRadius: 4,
     elevation: 3,
   },
   enableButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     fontWeight: '600',
     color: '#252525',
   },

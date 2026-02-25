@@ -22,7 +22,6 @@ import {
 } from '@expo-google-fonts/work-sans';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
-import { spacing, fontSize, size, radius, shadow } from '@/lib/theme';
 
 interface BodyType {
   id: string;
@@ -192,50 +191,50 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: spacing.xl,
-    paddingTop: spacing.md,
-    paddingBottom: spacing.xl,
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
   },
   backButton: {
-    padding: spacing.sm,
+    padding: 8,
   },
   skipButton: {
-    padding: spacing.sm,
+    padding: 8,
   },
   skipButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontFamily: 'Helvetica Neue',
     color: '#FFFFFF',
   },
   content: {
     flex: 1,
-    paddingHorizontal: spacing.xxl,
+    paddingHorizontal: 24,
   },
   titleContainer: {
-    marginBottom: spacing.xxxl,
+    marginBottom: 32,
   },
   title: {
-    fontSize: fontSize.xxxl,
+    fontSize: 30,
     fontFamily: 'Caladea-Regular',
     color: '#C0D1FF',
-    marginBottom: spacing.lg,
+    marginBottom: 12,
   },
   subtitle: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontFamily: 'Helvetica Neue',
     color: '#B5AFA9',
     lineHeight: 22,
   },
   optionsContainer: {
-    gap: spacing.lg,
+    gap: 16,
   },
   optionCard: {
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#4A4A4C',
-    borderRadius: radius.lg,
-    padding: spacing.xl,
-    minHeight: size.avatarLg,
+    borderRadius: 12,
+    padding: 20,
+    minHeight: 80,
   },
   selectedOptionCard: {
     borderColor: '#A8B3FF',
@@ -246,10 +245,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: size.avatarSm,
-    height: size.avatarLg,
-    marginRight: spacing.lg,
-    borderRadius: spacing.sm,
+    width: 60,
+    height: 80,
+    marginRight: 16,
+    borderRadius: 8,
     overflow: 'hidden',
   },
   bodyImage: {
@@ -261,38 +260,41 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   optionTitle: {
-    fontSize: fontSize.md,
+    fontSize: 18,
     fontFamily: 'Caladea-Regular',
     color: '#C0D1FF',
-    marginBottom: spacing.xs,
+    marginBottom: 4,
   },
   optionDescription: {
-    fontSize: fontSize.sm,
+    fontSize: 13,
     fontFamily: 'Helvetica Neue',
     color: '#D9D9D9',
-    lineHeight: fontSize.md,
+    lineHeight: 18,
   },
   bottomContainer: {
-    paddingHorizontal: spacing.xxl,
-    paddingBottom: spacing.xxxl,
-    paddingTop: spacing.xl,
+    paddingHorizontal: 24,
+    paddingBottom: 34,
+    paddingTop: 20,
   },
   continueButton: {
     backgroundColor: '#A8B3FF',
-    paddingVertical: spacing.lg,
-    borderRadius: radius.lg,
+    paddingVertical: 16,
+    borderRadius: 12,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: shadow.sm,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: radius.xs,
+    shadowRadius: 4,
     elevation: 3,
   },
   continueButtonDisabled: {
     backgroundColor: '#4A4A4C',
   },
   continueButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     color: '#000000',
     letterSpacing: 0.2,
   },

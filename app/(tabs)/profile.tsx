@@ -19,7 +19,6 @@ import {
 import { useOOTD } from '@/hooks/useOOTD';
 import { currentUser } from '@/data/ootd';
 import OOTDCard from '@/components/OOTDCard';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 const { width } = Dimensions.get('window');
 
@@ -168,28 +167,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingHorizontal: spacing.xxl,
-    paddingTop: spacing.lg,
-    paddingBottom: spacing.lg,
-    gap: spacing.xxl,
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 16,
+    gap: 23,
   },
   navButton: {
-    width: size.touch,
-    height: size.touch,
+    width: 44,
+    height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: radius.pill,
+    borderRadius: 22,
   },
   profileSection: {
     alignItems: 'center',
-    paddingBottom: spacing.xxxl,
+    paddingBottom: 30,
   },
   profilePictureContainer: {
-    width: size.avatarXl,
-    height: size.avatarXl,
-    borderRadius: size.avatarMd,
+    width: 89,
+    height: 89,
+    borderRadius: 64,
     overflow: 'hidden',
-    marginBottom: spacing.xxl,
+    marginBottom: 23,
     backgroundColor: '#ffffff',
   },
   profilePicture: {
@@ -199,52 +198,52 @@ const styles = StyleSheet.create({
   },
   name: {
     color: '#ffffff',
-    fontSize: fontSize.lg,
-    marginBottom: spacing.lg,
+    fontSize: 20,
+    marginBottom: 16,
     fontFamily: 'Caladea-Regular',
   },
   statsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 5.5,
   },
   username: {
     color: '#ffffff',
-    fontSize: fontSize.base,
+    fontSize: 15,
   },
   separator: {
     color: '#ffffff',
-    fontSize: fontSize.base,
-    marginBottom: spacing.md,
+    fontSize: 15,
+    marginBottom: 10,
   },
   statItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.xs,
+    gap: 4,
   },
   statText: {
     color: '#ffffff',
-    fontSize: fontSize.base,
+    fontSize: 15,
   },
   streakIcon: {
-    width: size.iconXs,
-    height: size.iconMd,
+    width: 16,
+    height: 22,
     resizeMode: 'contain',
   },
   streakNumber: {
     color: '#757EFA',
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   tabNavigation: {
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#4B5563',
-    paddingHorizontal: spacing.xxl,
+    paddingHorizontal: 24,
   },
   tab: {
     flex: 1,
-    paddingVertical: spacing.lg,
+    paddingVertical: 16,
     alignItems: 'center',
     position: 'relative',
   },
@@ -252,7 +251,7 @@ const styles = StyleSheet.create({
     // Additional styling for active tab if needed
   },
   tabText: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontWeight: '400',
     color: '#757575',
     fontFamily: 'Helvetica Neue',
@@ -264,7 +263,7 @@ const styles = StyleSheet.create({
   savedTabContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 8,
   },
   activeTabIndicator: {
     position: 'absolute',
@@ -276,8 +275,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.lg,
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   ootdsGrid: {
     flexDirection: 'row',
@@ -288,19 +287,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: size.avatarMd,
+    paddingTop: 64,
   },
   emptyStateText: {
     color: '#9CA3AF',
-    fontSize: fontSize.base,
+    fontSize: 16,
     textAlign: 'center',
     fontFamily: 'System',
   },
   emptyStateSubtext: {
     color: '#6B7280',
-    fontSize: fontSize.sm,
+    fontSize: 14,
     textAlign: 'center',
     fontFamily: 'System',
-    marginTop: spacing.sm,
+    marginTop: 8,
   },
 });

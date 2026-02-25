@@ -12,7 +12,6 @@ import { useRouter } from 'expo-router';
 import { useFonts, Caladea_400Regular, Caladea_700Bold } from '@expo-google-fonts/caladea';
 import { WorkSans_400Regular, WorkSans_500Medium, WorkSans_600SemiBold } from '@expo-google-fonts/work-sans';
 import * as Haptics from 'expo-haptics';
-import { radius, shadow } from '@/lib/theme';
 
 const { width, height } = Dimensions.get('window');
 
@@ -111,14 +110,14 @@ const styles = StyleSheet.create({
   continueButton: {
     width: '100%',
     backgroundColor: '#A8B3FF',
-    borderRadius: radius.xl,
+    borderRadius: 14,
     paddingVertical: height * 0.02,
     alignItems: 'center',
     marginBottom: height * 0.03,
     shadowColor: '#000',
-    shadowOffset: shadow.sm,
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
-    shadowRadius: radius.xs,
+    shadowRadius: 4,
     elevation: 4,
   },
   continueButtonText: {

@@ -12,7 +12,6 @@ import {
   ScrollView,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 export default function Login() {
   const router = useRouter();
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-    paddingHorizontal: spacing.xxl,
+    paddingHorizontal: 24,
     maxWidth: 448,
     width: '100%',
     alignSelf: 'center',
@@ -132,24 +131,24 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: spacing.lg,
-    marginBottom: spacing.xxxl,
+    marginTop: 16,
+    marginBottom: 32,
   },
   backButton: {
-    width: size.touch,
-    height: size.touch,
+    width: 40,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
   },
   backIcon: {
-    fontSize: fontSize.xl,
+    fontSize: 24,
     color: '#FFFFFF',
   },
   title: {
     color: '#FFFFFF',
-    fontSize: fontSize.lg,
+    fontSize: 20,
     fontWeight: '600',
-    marginLeft: spacing.lg,
+    marginLeft: 16,
   },
   centerContent: {
     flex: 1,
@@ -157,54 +156,54 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: spacing.xxxl,
+    marginBottom: 32,
   },
   logo: {
     width: 180,
     height: 75,
   },
   form: {
-    gap: spacing.lg,
+    gap: 16,
   },
   inputGroup: {
-    marginBottom: spacing.lg,
+    marginBottom: 16,
   },
   label: {
     color: '#FFFFFF',
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontWeight: '500',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   input: {
     backgroundColor: '#1F2937',
     borderWidth: 1,
     borderColor: '#4B5563',
-    borderRadius: radius.sm,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.lg,
-    fontSize: fontSize.base,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    fontSize: 16,
     color: '#FFFFFF',
   },
   signInButton: {
     backgroundColor: '#FFFFFF',
-    borderRadius: radius.sm,
-    paddingVertical: spacing.lg,
+    borderRadius: 6,
+    paddingVertical: 12,
     alignItems: 'center',
-    marginTop: spacing.xxl,
-    height: size.touchLg,
+    marginTop: 24,
+    height: 48,
     justifyContent: 'center',
   },
   signInButtonText: {
     color: '#000000',
-    fontSize: fontSize.base,
+    fontSize: 16,
     fontWeight: '500',
   },
   signUpContainer: {
     alignItems: 'center',
-    marginTop: spacing.sm,
+    marginTop: 8,
   },
   signUpText: {
     color: '#9CA3AF',
-    fontSize: fontSize.sm,
+    fontSize: 14,
   },
 });

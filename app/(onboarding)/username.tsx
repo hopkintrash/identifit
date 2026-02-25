@@ -17,7 +17,6 @@ import {
 } from '@expo-google-fonts/caladea';
 import * as Haptics from 'expo-haptics';
 import { saveUsername } from '@/lib/username';
-import { spacing, fontSize, size, radius, shadow } from '@/lib/theme';
 
 export default function UsernameScreen() {
   const router = useRouter();
@@ -127,61 +126,64 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingHorizontal: spacing.xxl,
+    paddingHorizontal: 24,
     paddingTop: 120,
-    paddingBottom: size.touch,
+    paddingBottom: 40,
   },
   inputSection: {
     alignItems: 'center',
   },
   title: {
-    fontSize: fontSize.xl,
+    fontSize: 22,
     fontFamily: 'Caladea-Regular',
     color: '#C0D1FF',
     textAlign: 'center',
-    marginBottom: size.touch,
+    marginBottom: 40,
     letterSpacing: 0.3,
   },
   input: {
-    fontSize: fontSize.xl,
+    fontSize: 24,
     fontFamily: 'Caladea-Regular',
     color: '#FFFFFF',
     textAlign: 'center',
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xl,
-    marginBottom: spacing.xxxl,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    marginBottom: 32,
     width: '100%',
   },
   helperText: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     color: '#999999',
     textAlign: 'center',
-    lineHeight: spacing.xl,
+    lineHeight: 20,
   },
   errorText: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     color: '#FF6B6B',
     textAlign: 'center',
-    marginTop: spacing.lg,
+    marginTop: 16,
   },
   continueButton: {
     backgroundColor: '#A8B3FF',
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xxxl,
-    borderRadius: radius.lg,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 12,
     width: '100%',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: shadow.sm,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: radius.xs,
+    shadowRadius: 4,
     elevation: 3,
   },
   continueButtonDisabled: {
     opacity: 0.5,
   },
   continueButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontWeight: '600',
     color: '#000000',
     letterSpacing: 0.2,

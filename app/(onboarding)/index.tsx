@@ -14,7 +14,6 @@ import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
 import { useOOTD } from '@/hooks/useOOTD';
 import { currentUser } from '@/data/ootd';
-import { spacing, fontSize, radius, shadow } from '@/lib/theme';
 
 const { width, height } = Dimensions.get('window');
 
@@ -93,19 +92,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: spacing.xl,
+    paddingHorizontal: 20,
   },
   greeting: {
-  fontSize: fontSize.xxl,
+  fontSize: 25,
   fontWeight: '400',
   fontFamily: 'Caladea-Regular',
   color: '#C0D1FF',
   textAlign: 'center',
-  marginBottom: spacing.xl,
-  lineHeight: 29,
+  marginBottom: 20,
+  lineHeight: 29, // 115% of font size
 },
   subtitle: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     color: '#B5AFA9',
     textAlign: 'center',
     fontFamily: 'Helvetica Neue',
@@ -116,30 +115,33 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     backgroundColor: '#A8B3FF',
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xxxl,
-    borderRadius: radius.lg,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 12,
     width: '100%',
     alignItems: 'center',
-    marginBottom: spacing.xxl,
+    marginBottom: 24,
     shadowColor: '#000',
-    shadowOffset: shadow.sm,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
     shadowOpacity: 0.1,
-    shadowRadius: radius.xs,
+    shadowRadius: 4,
     elevation: 3,
   },
   continueButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontWeight: '600',
     color: '#000000',
     letterSpacing: 0.2,
   },
   skipButton: {
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xxl,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
   },
   skipButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontFamily: 'Helvetica Neue',
     color: '#FFFFFF',
   },

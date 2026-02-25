@@ -14,7 +14,6 @@ import {
 import Slider from '@react-native-community/slider';
 import { useFonts, Caladea_400Regular, Caladea_700Bold } from '@expo-google-fonts/caladea';
 import { WorkSans_400Regular, WorkSans_500Medium, WorkSans_600SemiBold } from '@expo-google-fonts/work-sans';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 interface FilterSortSheetProps {
   visible: boolean;
@@ -281,8 +280,8 @@ const styles = StyleSheet.create({
   },
   sheetContainer: {
     backgroundColor: '#000000',
-    borderTopLeftRadius: radius.round,
-    borderTopRightRadius: radius.round,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     maxHeight: SHEET_MAX_HEIGHT,
     shadowColor: '#000',
     shadowOffset: {
@@ -298,62 +297,62 @@ const styles = StyleSheet.create({
   },
   handleContainer: {
     alignItems: 'center',
-    paddingVertical: spacing.lg,
+    paddingVertical: 12,
   },
   handle: {
-    width: size.handleWidth,
-    height: size.handleHeight,
+    width: 36,
+    height: 5,
     backgroundColor: '#3A3A3C',
-    borderRadius: radius.xs,
+    borderRadius: 3,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: spacing.xxl,
-    paddingVertical: spacing.lg,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#3A3A3C',
   },
   headerTitle: {
-    fontSize: fontSize.xl,
+    fontSize: 24,
     fontFamily: 'Caladea-Bold',
     color: '#FFFFFF',
   },
   resetText: {
-    fontSize: fontSize.base,
+    fontSize: 15,
     fontFamily: 'Helvetica Neue',
     color: '#FFFFFF',
   },
   content: {
     flex: 1,
-    paddingHorizontal: spacing.xxl,
-    paddingTop: spacing.xxxl,
+    paddingHorizontal: 24,
+    paddingTop: 32,
   },
   filterRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: size.touchLg,
-    gap: spacing.lg,
+    marginBottom: 48,
+    gap: 12,
   },
   filterOption: {
     flex: 1,
     alignItems: 'center',
   },
   filterButton: {
-    width: size.filterTile,
-    height: size.filterTile,
+    width: 103,
+    height: 100,
     backgroundColor: '#595959',
-    borderRadius: radius.roundLg,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: spacing.lg,
+    marginBottom: 12,
   },
   selectedFilter: {
     backgroundColor: '#C0D1FF',
   },
   seasonEmoji: {
-    fontSize: fontSize.xxxl,
+    fontSize: 32,
   },
   bodyTypeIcon: {
     justifyContent: 'center',
@@ -362,58 +361,58 @@ const styles = StyleSheet.create({
   triangle: {
     width: 0,
     height: 0,
-    borderLeftWidth: spacing.lg,
-    borderRightWidth: spacing.lg,
-    borderBottomWidth: spacing.xl,
+    borderLeftWidth: 12,
+    borderRightWidth: 12,
+    borderBottomWidth: 20,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: '#FFFFFF',
   },
   locationEmoji: {
-    fontSize: fontSize.xxxl,
+    fontSize: 32,
   },
   filterText: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'Helvetica Neue',
     color: '#FFFFFF',
     textAlign: 'center',
-    lineHeight: fontSize.sm,
+    lineHeight: 14,
   },
   comfortabilitySection: {
-    marginBottom: size.touchLg,
+    marginBottom: 48,
   },
   sectionTitle: {
-    fontSize: fontSize.lg,
+    fontSize: 20,
     fontFamily: 'Caladea-Bold',
     color: '#FFFFFF',
-    marginBottom: spacing.xxxl,
+    marginBottom: 32,
   },
   sliderContainer: {
-    marginBottom: spacing.xxl,
+    marginBottom: 24,
     position: 'relative',
-    height: size.avatarSm,
+    height: 60,
     justifyContent: 'center',
   },
   sliderBackground: {
     position: 'absolute',
     width: '100%',
-    height: size.avatarSm,
+    height: 60,
     left: 0,
     right: 0,
   },
   sliderBackgroundImage: {
     resizeMode: 'stretch',
-    borderRadius: radius.roundLg,
+    borderRadius: 30,
   },
   slider: {
     width: '100%',
-    height: size.touch,
+    height: 40,
     zIndex: 1,
   },
   sliderThumb: {
     backgroundColor: '#FFFFFF',
-    width: size.iconMd,
-    height: size.iconMd,
+    width: 24,
+    height: 24,
   },
   sliderLabels: {
     flexDirection: 'row',
@@ -423,29 +422,29 @@ const styles = StyleSheet.create({
   labelContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 8,
   },
   labelEmoji: {
-    fontSize: fontSize.xl,
+    fontSize: 22,
   },
   labelText: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-Regular',
     color: '#FFFFFF',
   },
   footer: {
-    paddingHorizontal: spacing.xxl,
-    paddingBottom: spacing.xxxl,
-    paddingTop: spacing.xl,
+    paddingHorizontal: 24,
+    paddingBottom: 34,
+    paddingTop: 20,
   },
   applyButton: {
     backgroundColor: '#A8B3FF',
-    borderRadius: radius.xxl,
-    paddingVertical: spacing.xl,
+    borderRadius: 16,
+    paddingVertical: 18,
     alignItems: 'center',
   },
   applyButtonText: {
-    fontSize: fontSize.base,
+    fontSize: 16,
     fontFamily: 'Helvetica Neue',
     color: '#000000',
   },

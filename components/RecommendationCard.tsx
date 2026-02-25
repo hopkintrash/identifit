@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Heart, Share } from 'lucide-react-native';
 import { OutfitRecommendation } from '@/types/occasion';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 interface RecommendationCardProps {
   recommendation: OutfitRecommendation;
@@ -128,9 +127,9 @@ function capitalizeFirst(str: string): string {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#2C2C2E',
-    borderRadius: radius.xxl,
-    padding: spacing.xl,
-    marginBottom: spacing.lg,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
     borderWidth: 1,
     borderColor: '#3A3A3C',
   },
@@ -138,19 +137,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: spacing.lg,
+    marginBottom: 12,
   },
   titleContainer: {
     flex: 1,
   },
   title: {
-    fontSize: fontSize.md,
+    fontSize: 18,
     fontFamily: 'Caladea-Bold',
     color: '#C0D1FF',
-    marginBottom: spacing.xs,
+    marginBottom: 4,
   },
   style: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'WorkSans-Medium',
     color: '#A8B3FF',
     textTransform: 'uppercase',
@@ -158,99 +157,99 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
-    gap: spacing.sm,
+    gap: 8,
   },
   actionButton: {
-    padding: spacing.sm,
+    padding: 8,
   },
   description: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-Regular',
     color: '#D1D5DB',
-    lineHeight: spacing.xl,
-    marginBottom: spacing.lg,
+    lineHeight: 20,
+    marginBottom: 16,
   },
   itemsContainer: {
-    marginBottom: spacing.lg,
+    marginBottom: 16,
   },
   itemsTitle: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-SemiBold',
     color: '#FFFFFF',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   itemsList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.sm,
+    gap: 8,
   },
   itemChip: {
     backgroundColor: '#3A3A3C',
-    borderRadius: radius.xxl,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
   itemText: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'WorkSans-Regular',
     color: '#C0D1FF',
   },
   colorsContainer: {
-    marginBottom: spacing.lg,
+    marginBottom: 16,
   },
   colorsTitle: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-SemiBold',
     color: '#FFFFFF',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   colorsList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.sm,
+    gap: 8,
   },
   colorChip: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#3A3A3C',
-    borderRadius: radius.xxl,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-    gap: spacing.sm,
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    gap: 6,
   },
   colorDot: {
-    width: fontSize.xs,
-    height: fontSize.xs,
-    borderRadius: radius.sm,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
     borderWidth: 1,
     borderColor: '#4A4A4C',
   },
   colorText: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'WorkSans-Regular',
     color: '#C0D1FF',
   },
   weatherContainer: {
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   weatherTitle: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-SemiBold',
     color: '#FFFFFF',
-    marginBottom: spacing.sm,
+    marginBottom: 8,
   },
   weatherList: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.sm,
+    gap: 8,
   },
   weatherTag: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
     fontFamily: 'WorkSans-Regular',
     color: '#9CA3AF',
     backgroundColor: '#3A3A3C',
-    borderRadius: radius.lg,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
 });

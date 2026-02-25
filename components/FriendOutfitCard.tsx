@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { Heart, Clock } from 'lucide-react-native';
 import { Friend, FriendOutfit } from '@/types/social';
-import { spacing, fontSize, size, radius } from '@/lib/theme';
 
 const { width } = Dimensions.get('window');
 const cardWidth = (width - 60) / 2; // 2 columns with padding
@@ -145,9 +144,9 @@ const styles = StyleSheet.create({
   container: {
     width: cardWidth,
     backgroundColor: '#2C2C2E',
-    borderRadius: radius.xxl,
+    borderRadius: 16,
     overflow: 'hidden',
-    marginBottom: spacing.lg,
+    marginBottom: 16,
     borderWidth: 1,
     borderColor: '#3A3A3C',
   },
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: spacing.lg,
+    padding: 12,
   },
   friendInfo: {
     flexDirection: 'row',
@@ -164,26 +163,26 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
     position: 'relative',
-    marginRight: spacing.sm,
+    marginRight: 8,
   },
   avatar: {
-    width: size.iconLg,
-    height: size.iconLg,
-    borderRadius: radius.xl,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
   },
   onlineIndicator: {
     position: 'absolute',
     bottom: -1,
     right: -1,
-    width: size.iconSm,
-    height: size.iconSm,
-    borderRadius: radius.sm,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
     backgroundColor: '#4ADE80',
     borderWidth: 2,
     borderColor: '#2C2C2E',
   },
   friendName: {
-    fontSize: fontSize.sm,
+    fontSize: 14,
     fontFamily: 'WorkSans-SemiBold',
     color: '#FFFFFF',
     flex: 1,
@@ -191,10 +190,10 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.xs,
+    gap: 4,
   },
   timeText: {
-    fontSize: fontSize.caption,
+    fontSize: 11,
     fontFamily: 'WorkSans-Regular',
     color: '#6B7280',
   },
@@ -208,46 +207,46 @@ const styles = StyleSheet.create({
   },
   overlayInfo: {
     position: 'absolute',
-    top: spacing.sm,
-    right: spacing.sm,
-    gap: spacing.xs,
+    top: 8,
+    right: 8,
+    gap: 4,
   },
   weatherBadge: {
-    width: size.iconMd,
-    height: size.iconMd,
-    borderRadius: radius.lg,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   weatherIcon: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
   },
   occasionBadge: {
-    width: size.iconMd,
-    height: size.iconMd,
-    borderRadius: radius.lg,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     backgroundColor: 'rgba(168, 179, 255, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   occasionIcon: {
-    fontSize: fontSize.xs,
+    fontSize: 12,
   },
   likeSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: spacing.lg,
+    padding: 12,
   },
   likeButton: {
-    padding: spacing.xs,
+    padding: 4,
   },
   likesCount: {
-    fontSize: fontSize.sm,
+    fontSize: 13,
     fontFamily: 'WorkSans-Medium',
     color: '#9CA3AF',
-    minWidth: size.iconSm,
+    minWidth: 20,
     textAlign: 'right',
   },
 });

@@ -50,20 +50,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="social"
-        options={{
-          href: null,
-          tabBarIcon: ({ size, color }) => (
-            <Users size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="links"
         options={{
           href: null,
           tabBarIcon: ({ size, color }) => (
             <House size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="social"
+        options={{
+          href: null,
+          tabBarIcon: ({ size, color }) => (
+            <Users size={size} color={color} />
           ),
         }}
       />
