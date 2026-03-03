@@ -6,6 +6,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
+  TextInput,
   Image,
 } from 'react-native';
 import { ChevronLeft } from 'lucide-react-native';
@@ -23,49 +24,28 @@ import {
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
 
-interface BodyType {
-  id: string;
-  name: string;
-  description: string;
-  image: any;
-}
-
-const bodyTypes: BodyType[] = [
-  {
-    id: 'hourglass',
-    name: 'Hourglass',
-    description: 'Waist is the narrowest part of frame',
-    image: require('@/assets/images/image 122.png'),
-  },
-  {
-    id: 'triangle',
-    name: 'Triangle',
-    description: 'Hips are broader than shoulders',
-    image: require('@/assets/images/image copy copy copy.png'),
-  },
-  {
-    id: 'rectangle',
-    name: 'Rectangle',
-    description: 'Hips, shoulders & waist are the same proportion',
-    image: require('@/assets/images/image (1).png'),
-  },
-  {
-    id: 'oval',
-    name: 'Oval',
-    description: 'Hips & shoulders are narrower than waist',
-    image: require('@/assets/images/image (2).png'),
-  },
-  {
-    id: 'heart',
-    name: 'Heart',
-    description: 'Hips are narrower than shoulders',
-    image: require('@/assets/images/image (3).png'),
-  },
+const styleOptions = [
+  'Y2K',
+  'Casual',
+  'Street',
+  'Cottage',
+  'Sporty',
+  'Minimal',
+  'Bold',
+  'Layering',
+  'Grunge',
+  'Cozy',
+  'Vintage',
+  'Cyber',
+  'Clean Girl',
+  'Coquette',
 ];
 
-export default function BodyTypeScreen() {
+export default function PersonalStyleScreen() {
   const router = useRouter();
-  const [selectedBodyType, setSelectedBodyType] = useState<string | null>(null);
+  const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
+  const [searchText, setSearchText] = useState('');
+  const [customStyles, setCustomStyles] = useState<string[]>([]);
 
   const [fontsLoaded] = useFonts({
     'Caladea-Regular': Caladea_400Regular,
@@ -76,13 +56,12 @@ export default function BodyTypeScreen() {
   });
 
   const handleBack = () => {
-    console.log('Back pressed');
     router.back();
   };
 
   const handleSkip = () => {
     console.log('Skip pressed');
-    router.push('/(tabs)/home');
+    router.push('/NAV/home');
   };
 
   const handleContinue = () => {
@@ -90,13 +69,30 @@ export default function BodyTypeScreen() {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    console.log('Continue pressed with selection:', selectedBodyType);
-    router.push('/(onboarding)/personal-style');
+    console.log('Continue pressed with styles:', selectedStyles);
+    router.push('/ONBOARDING/outfit-prompt');
   };
 
-  const handleBodyTypeSelect = (bodyTypeId: string) => {
-    setSelectedBodyType(bodyTypeId);
+  const toggleStyle = (style: string) => {
+    setSelectedStyles((prev) =>
+      prev.includes(style) ? prev.filter((s) => s !== style) : [...prev, style]
+    );
   };
+
+  const handleSearchSubmit = () => {
+    if (
+      searchText.trim() &&
+      !styleOptions.includes(searchText.trim()) &&
+      !customStyles.includes(searchText.trim())
+    ) {
+      const newStyle = searchText.trim();
+      setCustomStyles((prev) => [...prev, newStyle]);
+      setSelectedStyles((prev) => [...prev, newStyle]);
+      setSearchText('');
+    }
+  };
+
+  const allStyles = [...styleOptions, ...customStyles];
 
   if (!fontsLoaded) {
     return null;
@@ -124,35 +120,50 @@ export default function BodyTypeScreen() {
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Body Type</Text>
+          <Text style={styles.title}>Personal Style</Text>
           <Text style={styles.subtitle}>
-            This will help us offer better recommendations based on your body
-            type.
+            This will help us identify your style and offer better outfit
+            recommendations.
           </Text>
         </View>
 
-        <View style={styles.optionsContainer}>
-          {bodyTypes.map((bodyType) => (
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="ex. balletcore"
+            placeholderTextColor="#8E8E93"
+            value={searchText}
+            onChangeText={setSearchText}
+            onSubmitEditing={handleSearchSubmit}
+            returnKeyType="done"
+          />
+        </View>
+
+        <View style={styles.stylesContainer}>
+          {allStyles.map((style, index) => (
             <TouchableOpacity
-              key={bodyType.id}
+              key={`${style}-${index}`}
               style={[
-                styles.optionCard,
-                selectedBodyType === bodyType.id && styles.selectedOptionCard,
+                styles.styleChip,
+                selectedStyles.includes(style) && styles.selectedStyleChip,
               ]}
-              onPress={() => handleBodyTypeSelect(bodyType.id)}
+              onPress={() => toggleStyle(style)}
               activeOpacity={0.8}
             >
-              <View style={styles.optionContent}>
-                <View style={styles.imageContainer}>
-                  <Image source={bodyType.image} style={styles.bodyImage} />
+              <Text
+                style={[
+                  styles.styleChipText,
+                  selectedStyles.includes(style) &&
+                    styles.selectedStyleChipText,
+                ]}
+              >
+                {style}
+              </Text>
+              {selectedStyles.includes(style) && (
+                <View style={styles.checkIcon}>
+                  <Text style={styles.checkMark}>✓</Text>
                 </View>
-                <View style={styles.textContainer}>
-                  <Text style={styles.optionTitle}>{bodyType.name}</Text>
-                  <Text style={styles.optionDescription}>
-                    {bodyType.description}
-                  </Text>
-                </View>
-              </View>
+              )}
             </TouchableOpacity>
           ))}
         </View>
@@ -162,16 +173,16 @@ export default function BodyTypeScreen() {
         <TouchableOpacity
           style={[
             styles.continueButton,
-            !selectedBodyType && styles.continueButtonDisabled,
+            selectedStyles.length === 0 && styles.continueButtonDisabled,
           ]}
           onPress={handleContinue}
-          activeOpacity={selectedBodyType ? 0.8 : 1}
-          disabled={!selectedBodyType}
+          activeOpacity={selectedStyles.length > 0 ? 0.8 : 1}
+          disabled={selectedStyles.length === 0}
         >
           <Text
             style={[
               styles.continueButtonText,
-              !selectedBodyType && styles.continueButtonTextDisabled,
+              selectedStyles.length === 0 && styles.continueButtonTextDisabled,
             ]}
           >
             Continue
@@ -225,51 +236,58 @@ const styles = StyleSheet.create({
     color: '#B5AFA9',
     lineHeight: 22,
   },
-  optionsContainer: {
-    gap: 16,
+  searchContainer: {
+    marginBottom: 32,
   },
-  optionCard: {
+  searchInput: {
+    backgroundColor: '#3A3A3C',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#4A4A4C',
+  },
+  stylesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  styleChip: {
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#4A4A4C',
-    borderRadius: 12,
-    padding: 20,
-    minHeight: 80,
-  },
-  selectedOptionCard: {
-    borderColor: '#A8B3FF',
-    backgroundColor: 'rgba(168, 179, 255, 0.1)',
-  },
-  optionContent: {
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    marginBottom: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  imageContainer: {
-    width: 60,
-    height: 80,
-    marginRight: 16,
-    borderRadius: 8,
-    overflow: 'hidden',
+  selectedStyleChip: {
+    backgroundColor: '#A8B3FF',
+    borderColor: '#A8B3FF',
   },
-  bodyImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  textContainer: {
-    flex: 1,
-  },
-  optionTitle: {
-    fontSize: 18,
-    fontFamily: 'Caladea-Regular',
+  styleChipText: {
+    fontSize: 14,
+    fontFamily: 'Default',
     color: '#C0D1FF',
-    marginBottom: 4,
   },
-  optionDescription: {
-    fontSize: 13,
-    fontFamily: 'Helvetica Neue',
-    color: '#D9D9D9',
-    lineHeight: 18,
+  selectedStyleChipText: {
+    color: '#000000',
+  },
+  checkIcon: {
+    width: 16,
+    height: 16,
+    marginLeft: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkMark: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
   },
   bottomContainer: {
     paddingHorizontal: 24,
@@ -290,13 +308,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  continueButtonDisabled: {
-    backgroundColor: '#4A4A4C',
-  },
   continueButtonText: {
     fontSize: 16,
     color: '#000000',
     letterSpacing: 0.2,
+  },
+  continueButtonDisabled: {
+    backgroundColor: '#2C2C2E',
   },
   continueButtonTextDisabled: {
     color: '#8E8E93',

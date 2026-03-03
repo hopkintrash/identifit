@@ -33,12 +33,12 @@ export default function OnboardingScreen() {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    router.push('/(onboarding)/body-type');
+    router.push('/ONBOARDING/body-type');
   };
 
   const handleSkip = () => {
     console.log('Skip pressed');
-    router.push('/(tabs)/home');
+    router.push('/NAV/home');
   };
 
   if (!fontsLoaded) {

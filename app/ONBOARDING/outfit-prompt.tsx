@@ -30,11 +30,11 @@ export default function OutfitUploadScreen() {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    router.push('/(tabs)/home');
+    router.push('/NAV/home');
   };
 
   const handleSkip = () => {
-    router.push('/(tabs)/home');
+    router.push('/NAV/home');
   };
 
   if (!fontsLoaded) return null;

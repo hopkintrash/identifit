@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Dimensions,
+  Animated,
 } from 'react-native';
 import { ArrowRight } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
@@ -17,10 +18,21 @@ import {
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
+const SLIDE_TRANSITION_DURATION = 280;
+const GALLERY_TRANSITION_DURATION = 400;
+
 export default function FeatureOverview() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState(0);
+
+  // Animated opacities for smooth slide crossfade (all images stay mounted = preloaded)
+  const slideOpacities = useRef(
+    [1, 0, 0, 0].map((v) => new Animated.Value(v))
+  ).current;
+  const galleryOpacities = useRef(
+    [1, 0, 0].map((v) => new Animated.Value(v))
+  ).current;
 
   const [fontsLoaded] = useFonts({
     'Caladea-Regular': Caladea_400Regular,
@@ -33,11 +45,33 @@ export default function FeatureOverview() {
     require('@/assets/images/Frame 121075728.png'),
   ];
 
+  // Crossfade when slide changes
+  useEffect(() => {
+    slideOpacities.forEach((op, i) => {
+      Animated.timing(op, {
+        toValue: i === currentSlide ? 1 : 0,
+        duration: SLIDE_TRANSITION_DURATION,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [currentSlide]);
+
+  // Smooth crossfade when gallery image changes (slide 1)
+  useEffect(() => {
+    galleryOpacities.forEach((op, i) => {
+      Animated.timing(op, {
+        toValue: i === galleryIndex ? 1 : 0,
+        duration: GALLERY_TRANSITION_DURATION,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [galleryIndex]);
+
   useEffect(() => {
     if (currentSlide === 1) {
       const interval = setInterval(() => {
         setGalleryIndex((prev) => (prev + 1) % galleryImages.length);
-      }, 2000);
+      }, 2500);
       return () => clearInterval(interval);
     }
   }, [currentSlide, galleryImages.length]);
@@ -76,12 +110,12 @@ export default function FeatureOverview() {
     if (currentSlide < slides.length - 1) {
       setCurrentSlide(currentSlide + 1);
     } else {
-      router.push('/(onboarding)');
+      router.push('/account');
     }
   };
 
   const handleSkip = () => {
-    router.push('/(onboarding)');
+    router.push('/account');
   };
 
   return (
@@ -91,55 +125,66 @@ export default function FeatureOverview() {
           <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
 
-        {currentSlide === 0 && slides[0].image && (
-          <View style={styles.imageContainer}>
-            <Image
-              source={slides[0].image}
-              style={styles.slideImage}
-              resizeMode="contain"
-            />
-          </View>
-        )}
-
-        {currentSlide === 1 && (
-          <View style={styles.imageContainer}>
+        {/* All images stay mounted (preloaded) - visibility via animated opacity for smooth crossfade */}
+        <View style={styles.imageContainer} pointerEvents="none">
+          {slides[0].image && (
+            <Animated.View
+              style={[styles.slideImageWrapper, { opacity: slideOpacities[0] }]}
+              pointerEvents="none">
+              <Image
+                source={slides[0].image}
+                style={styles.slideImage}
+                resizeMode="contain"
+              />
+            </Animated.View>
+          )}
+          <Animated.View
+            style={[
+              styles.slideImageWrapper,
+              { opacity: slideOpacities[1] },
+              styles.galleryWrapper,
+            ]}
+            pointerEvents="none">
             <View style={styles.galleryContainer}>
               {galleryImages.map((image, index) => (
-                <Image
+                <Animated.View
                   key={index}
-                  source={image}
                   style={[
                     styles.galleryImage,
-                    {
-                      opacity: index === galleryIndex ? 1 : 0,
-                    },
-                  ]}
-                  resizeMode="contain"
-                />
+                    { opacity: galleryOpacities[index] },
+                  ]}>
+                  <Image
+                    source={image}
+                    style={styles.galleryImageInner}
+                    resizeMode="contain"
+                  />
+                </Animated.View>
               ))}
             </View>
-          </View>
-        )}
-
-        {currentSlide === 2 && slides[2].image && (
-          <View style={styles.imageContainer}>
-            <Image
-              source={slides[2].image}
-              style={styles.slideImage}
-              resizeMode="contain"
-            />
-          </View>
-        )}
-
-        {currentSlide === 3 && slides[3].image && (
-          <View style={styles.imageContainer}>
-            <Image
-              source={slides[3].image}
-              style={styles.slideImage}
-              resizeMode="contain"
-            />
-          </View>
-        )}
+          </Animated.View>
+          {slides[2].image && (
+            <Animated.View
+              style={[styles.slideImageWrapper, { opacity: slideOpacities[2] }]}
+              pointerEvents="none">
+              <Image
+                source={slides[2].image}
+                style={styles.slideImage}
+                resizeMode="contain"
+              />
+            </Animated.View>
+          )}
+          {slides[3].image && (
+            <Animated.View
+              style={[styles.slideImageWrapper, { opacity: slideOpacities[3] }]}
+              pointerEvents="none">
+              <Image
+                source={slides[3].image}
+                style={styles.slideImage}
+                resizeMode="contain"
+              />
+            </Animated.View>
+          )}
+        </View>
 
         <View style={styles.contentContainer}>
           <View style={styles.textContent}>
@@ -211,9 +256,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  slideImageWrapper: {
+    position: 'absolute',
+    width: 300,
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   slideImage: {
     width: 300,
     height: 300,
+  },
+  galleryWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   galleryContainer: {
     width: 200,
@@ -224,6 +280,10 @@ const styles = StyleSheet.create({
   },
   galleryImage: {
     position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  galleryImageInner: {
     width: '100%',
     height: '100%',
   },

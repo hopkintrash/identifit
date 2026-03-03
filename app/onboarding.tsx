@@ -100,7 +100,7 @@ export default function Welcome() {
             progressIntervalRef.current = null;
           }
           navigateTimeoutRef.current = setTimeout(() => {
-            router.push('/login');
+            router.push('/feature-overview');
           }, 500);
           return 100;
         }

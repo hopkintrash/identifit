@@ -19,7 +19,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    router.push('/feature-overview');
+    router.push('/ONBOARDING/body-type');
   };
 
   return (

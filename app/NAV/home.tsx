@@ -27,26 +27,15 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as Haptics from 'expo-haptics';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
-import PermissionWrapper from '@/components/PermissionWrapper';
-import { usePermissions } from '@/hooks/usePermissions';
 import { useOOTD } from '@/hooks/useOOTD';
 import { currentUser } from '@/data/ootd';
 
 export default function HomeScreen() {
-  const {
-    hasCameraPermission,
-    hasGalleryPermission,
-    requestCameraAccess,
-    requestGalleryAccess,
-  } = usePermissions();
   const { saveOOTD, getOOTDForDate, getRecentOOTDs, userOOTDs, deleteOOTD, getTopStyles } =
     useOOTD();
   const cameraRef = React.useRef<any>(null);
   const [showCamera, setShowCamera] = React.useState(false);
   const [facing, setFacing] = React.useState<CameraType>('back');
-  const [showCameraPermission, setShowCameraPermission] = React.useState(false);
-  const [showGalleryPermission, setShowGalleryPermission] =
-    React.useState(false);
   const [logoOpacity] = React.useState(new Animated.Value(0));
   const [logoTranslateY] = React.useState(new Animated.Value(20));
   const [hasTriggeredHaptic, setHasTriggeredHaptic] = React.useState(false);
@@ -95,11 +84,6 @@ export default function HomeScreen() {
   };
 
   const pickImageFromLibrary = async () => {
-    if (!hasGalleryPermission()) {
-      setShowGalleryPermission(true);
-      return;
-    }
-
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -123,11 +107,6 @@ export default function HomeScreen() {
   };
 
   const openCamera = async () => {
-    if (!hasCameraPermission()) {
-      setShowCameraPermission(true);
-      return;
-    }
-
     setShowCamera(true);
   };
 
@@ -276,42 +255,6 @@ export default function HomeScreen() {
       ]).start();
     }
   };
-
-  // Show camera permission screen
-  if (showCameraPermission) {
-    return (
-      <PermissionWrapper
-        requiredPermissions={['camera']}
-        onPermissionGranted={() => {
-          setShowCameraPermission(false);
-          setShowCamera(true);
-        }}
-        onSkip={() => setShowCameraPermission(false)}
-        customTitle="Camera Access for Outfits"
-        customSubtitle="Take photos of your daily outfits to track your style journey and get AI-powered recommendations."
-      >
-        <View />
-      </PermissionWrapper>
-    );
-  }
-
-  // Show gallery permission screen
-  if (showGalleryPermission) {
-    return (
-      <PermissionWrapper
-        requiredPermissions={['gallery']}
-        onPermissionGranted={() => {
-          setShowGalleryPermission(false);
-          pickImageFromLibrary();
-        }}
-        onSkip={() => setShowGalleryPermission(false)}
-        customTitle="Gallery Access for Outfits"
-        customSubtitle="Choose from your existing photos to add to your outfit collection and style profile."
-      >
-        <View />
-      </PermissionWrapper>
-    );
-  }
 
   if (showCamera) {
     return (

@@ -41,8 +41,8 @@ export default function LocationScreen() {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status === 'granted') {
-        // Location permission granted, navigate to camera access screen
-        router.push('/camera-access');
+        // Location permission granted, navigate to main app
+        router.push('/(tabs)');
       } else {
         // Permission denied
         Alert.alert(
@@ -59,7 +59,7 @@ export default function LocationScreen() {
   };
 
   const handleSkip = () => {
-    router.push('/camera-access');
+    router.push('/(tabs)');
   };
 
   return (

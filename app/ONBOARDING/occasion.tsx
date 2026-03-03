@@ -41,7 +41,7 @@ export default function OccasionScreen() {
   };
 
   const handleSkip = () => {
-    router.push('/(tabs)/home');
+    router.push('/NAV/home');
   };
 
   const handleContinue = () => {
@@ -50,7 +50,7 @@ export default function OccasionScreen() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     console.log('Continue pressed with occasion:', currentOccasion);
-    router.push('/(onboarding)/upload-outfit');
+    router.push('/ONBOARDING/outfit-prompt');
   };
 
   const togglePastOccasion = (occasion: string) => {
@@ -154,7 +154,7 @@ export default function OccasionScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2C2C2E',
+    backgroundColor: '#252525',
   },
   header: {
     flexDirection: 'row',

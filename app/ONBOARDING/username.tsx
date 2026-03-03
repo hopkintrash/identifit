@@ -49,7 +49,7 @@ export default function UsernameScreen() {
     const result = await saveUsername(tempUserId, username.trim());
 
     if (result.success) {
-      router.push('/(onboarding)/index');
+      router.push('/ONBOARDING/index');
     } else {
       setError(result.error || 'Failed to save username');
       if (Platform.OS === 'web') {
