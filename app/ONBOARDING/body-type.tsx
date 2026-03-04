@@ -82,7 +82,7 @@ export default function BodyTypeScreen() {
 
   const handleSkip = () => {
     console.log('Skip pressed');
-    router.push('/NAV/home');
+    router.push('/NAV');
   };
 
   const handleContinue = () => {
@@ -185,14 +185,13 @@ export default function BodyTypeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 10,
     paddingBottom: 20,
   },
   backButton: {
@@ -233,8 +232,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#4A4A4C',
     borderRadius: 12,
-    padding: 20,
-    minHeight: 80,
+    padding: 16,
   },
   selectedOptionCard: {
     borderColor: '#A8B3FF',
@@ -246,7 +244,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: 60,
-    height: 80,
+    height: 60,
     marginRight: 16,
     borderRadius: 8,
     overflow: 'hidden',
@@ -273,7 +271,6 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     paddingHorizontal: 24,
-    paddingBottom: 34,
     paddingTop: 20,
   },
   continueButton: {

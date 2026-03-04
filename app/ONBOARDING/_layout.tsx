@@ -7,12 +7,15 @@ export default function OnboardingLayout() {
         headerShown: false,
         animation: 'fade',
         animationDuration: 350,
-        contentStyle: { backgroundColor: '#252525' },
+        contentStyle: { backgroundColor: '#1a1a1a' },
       }}>
+      <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+      <Stack.Screen name="feature-overview" options={{ headerShown: false }} />
+      <Stack.Screen name="account" options={{ headerShown: false }} />
       <Stack.Screen name="username" options={{ headerShown: false }} />
-      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="body-type" options={{ headerShown: false }} />
       <Stack.Screen name="personal-style" options={{ headerShown: false }} />
+      <Stack.Screen name="occasion" options={{ headerShown: false }} />
     </Stack>
   );
 }

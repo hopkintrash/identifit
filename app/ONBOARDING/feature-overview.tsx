@@ -110,12 +110,12 @@ export default function FeatureOverview() {
     if (currentSlide < slides.length - 1) {
       setCurrentSlide(currentSlide + 1);
     } else {
-      router.push('/account');
+      router.push('/ONBOARDING/account');
     }
   };
 
   const handleSkip = () => {
-    router.push('/account');
+    router.push('/ONBOARDING/account');
   };
 
   return (
@@ -226,7 +226,7 @@ export default function FeatureOverview() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
     justifyContent: 'center',
     alignItems: 'center',
   },

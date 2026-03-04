@@ -34,7 +34,7 @@ export default function OutfitUploadScreen() {
   };
 
   const handleSkip = () => {
-    router.push('/NAV/home');
+    router.push('/NAV');
   };
 
   if (!fontsLoaded) return null;
@@ -45,8 +45,8 @@ export default function OutfitUploadScreen() {
         {/* Text Section */}
         <View style={styles.textWrapper}>
           <Text style={styles.title}>
-            Now, let's try how to{'\n'}
-            upload today's <Text style={styles.highlight}>outfit!</Text>
+            Now, let's try{'\n'}
+            uploading today's <Text style={styles.highlight}>outfit!</Text>
           </Text>
         </View>
 
@@ -76,7 +76,7 @@ export default function OutfitUploadScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
   },
   innerContainer: {
     flex: 1,

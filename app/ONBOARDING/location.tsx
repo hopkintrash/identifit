@@ -96,7 +96,7 @@ export default function LocationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
   enableButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#252525',
+    color: '#1a1a1a',
   },
 });

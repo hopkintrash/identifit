@@ -61,7 +61,7 @@ export default function PersonalStyleScreen() {
 
   const handleSkip = () => {
     console.log('Skip pressed');
-    router.push('/NAV/home');
+    router.push('/NAV');
   };
 
   const handleContinue = () => {
@@ -70,7 +70,7 @@ export default function PersonalStyleScreen() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     console.log('Continue pressed with styles:', selectedStyles);
-    router.push('/ONBOARDING/outfit-prompt');
+    router.push('/ONBOARDING/NAV');
   };
 
   const toggleStyle = (style: string) => {
@@ -196,7 +196,7 @@ export default function PersonalStyleScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
   },
   header: {
     flexDirection: 'row',
@@ -240,14 +240,14 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   searchInput: {
-    backgroundColor: '#3A3A3C',
-    borderRadius: 12,
-    paddingHorizontal: 16,
+    backgroundColor: '#1F2937',
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: '#4B5563',
     paddingVertical: 14,
+    paddingHorizontal: 16,
     fontSize: 16,
     color: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#4A4A4C',
   },
   stylesContainer: {
     flexDirection: 'row',

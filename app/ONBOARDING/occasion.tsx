@@ -41,7 +41,7 @@ export default function OccasionScreen() {
   };
 
   const handleSkip = () => {
-    router.push('/NAV/home');
+    router.push('/NAV');
   };
 
   const handleContinue = () => {
@@ -154,7 +154,7 @@ export default function OccasionScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
   },
   header: {
     flexDirection: 'row',

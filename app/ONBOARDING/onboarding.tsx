@@ -100,7 +100,7 @@ export default function Welcome() {
             progressIntervalRef.current = null;
           }
           navigateTimeoutRef.current = setTimeout(() => {
-            router.push('/feature-overview');
+            router.push('/ONBOARDING/feature-overview');
           }, 500);
           return 100;
         }
@@ -188,7 +188,7 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#252525',
+    backgroundColor: '#1a1a1a',
     justifyContent: 'center',
     alignItems: 'center',
   },
