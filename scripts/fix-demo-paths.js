@@ -12,7 +12,8 @@ if (!fs.existsSync(indexPath)) {
 }
 
 let html = fs.readFileSync(indexPath, 'utf8');
-html = html.replace(/href="\/favicon/g, 'href="./favicon');
-html = html.replace(/src="\/_expo/g, 'src="./_expo');
+// Fix paths for when app is served from /app/ subdirectory (handles both /favicon and /app/favicon)
+html = html.replace(/href="(?:\/app)?\/favicon/g, 'href="./favicon');
+html = html.replace(/src="(?:\/app)?\/_expo/g, 'src="./_expo');
 fs.writeFileSync(indexPath, html);
 console.log('Fixed demo app paths for subdirectory serving');
