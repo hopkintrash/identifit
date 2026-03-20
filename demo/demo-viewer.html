@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>identifit — Live Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0d0d0d;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .demo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .back-link {
+      color: #9ca3af;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #C0D1FF;
+    }
+    .phone-frame {
+      width: 393px;
+      height: 852px;
+      background: #1a1a1a;
+      border-radius: 48px;
+      padding: 12px;
+      box-shadow: 
+        0 0 0 3px #2a2a2a,
+        0 0 0 8px #1a1a1a,
+        0 50px 100px -20px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #0d0d0d;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .phone-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    @media (max-width: 440px) {
+      .phone-frame {
+        width: 100%;
+        max-width: 393px;
+        height: 80vh;
+        max-height: 852px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <a href="./" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to portfolio
+    </a>
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <iframe src="./app/" title="identifit app"></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

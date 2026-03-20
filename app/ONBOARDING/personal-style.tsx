@@ -70,7 +70,7 @@ export default function PersonalStyleScreen() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     console.log('Continue pressed with styles:', selectedStyles);
-    router.push('/ONBOARDING/NAV');
+    router.push('/ONBOARDING/occasion');
   };
 
   const toggleStyle = (style: string) => {

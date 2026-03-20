@@ -15,7 +15,6 @@ export default function OnboardingLayout() {
       <Stack.Screen name="username" options={{ headerShown: false }} />
       <Stack.Screen name="body-type" options={{ headerShown: false }} />
       <Stack.Screen name="personal-style" options={{ headerShown: false }} />
-      <Stack.Screen name="occasion" options={{ headerShown: false }} />
     </Stack>
   );
 }

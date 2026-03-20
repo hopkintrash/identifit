@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>identifit — Live Demo | Portfolio</title>
+  <meta name="description" content="identifit: Capture your identity in every fit. A fashion & style tracking app built with React Native & Expo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --bg-elevated: #161616;
+      --accent: #C0D1FF;
+      --accent-muted: rgba(192, 209, 255, 0.15);
+      --text: #f5f5f5;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 60px 24px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-logo {
+      width: clamp(180px, 45vw, 280px);
+      height: auto;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+
+    .hero .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.65s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+    }
+
+    .btn-primary:hover {
+      background: #a8bfff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(192, 209, 255, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Phone mockup */
+    .phone-mockup {
+      margin-top: 80px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
+    }
+
+    .phone-frame {
+      width: 280px;
+      height: 560px;
+      background: #1a1a1a;
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow: 
+        0 0 0 3px #2a2a2a,
+        0 0 0 6px #1a1a1a,
+        0 50px 100px -20px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #0d0d0d;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .phone-screen .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .phone-screen .logo-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .phone-screen .hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 180px;
+    }
+
+    /* Features */
+    .features {
+      padding: 120px 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 64px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-muted);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-muted);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .feature-card p {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Tech stack */
+    .tech {
+      padding: 80px 0 120px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tech-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    .tech-subtitle strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .tech-tag {
+      padding: 10px 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .tech-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tech-tag-highlight {
+      border-color: var(--accent-muted);
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    footer .footer-process {
+      font-size: 12px;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    /* Floating credit */
+    .floating-credit {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-credit:hover {
+      border-color: var(--accent-muted);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(192, 209, 255, 0.1);
+    }
+
+    .floating-credit img {
+      width: 32px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .floating-credit .credit-text {
+      line-height: 1.4;
+    }
+
+    .floating-credit .credit-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    .floating-credit .credit-name {
+      font-weight: 600;
+      color: inherit;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .phone-frame {
+        width: 240px;
+        height: 480px;
+      }
+
+      .hero {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="hero-badge">Portfolio Project</span>
+      <img src="identifit.png" alt="identifit" class="hero-logo" />
+      <p class="tagline">capture your identity in every fit</p>
+      <div class="cta-group">
+        <a href="./demo-viewer.html" class="btn btn-primary" id="demo-btn">
+          Try Live Demo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#features" class="btn btn-secondary">View Features</a>
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <span class="logo-text">identifit</span>
+            <span class="logo-tagline">Your style, identified</span>
+            <p class="hint">Tap "Try Live Demo" to explore the full app experience in your browser.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">What it does</h2>
+        <p class="section-subtitle">A personal style companion that helps you track outfits, discover trends, and get smarter outfit suggestions.</p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📸</div>
+            <h3>OOTD Tracking</h3>
+            <p>Upload your daily outfits to build a visual diary of your style. Track streaks and see how much of your wardrobe you actually wear.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Personalized Suggestions</h3>
+            <p>Get outfit recommendations based on your preferences, weather, occasions, and the pieces you own.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Recreate Inspirations</h3>
+            <p>Find similar items in your closet to recreate looks from social media and fashion magazines.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Monthly Style Recap</h3>
+            <p>Review your style journey with recaps showing most-worn pieces, color preferences, and evolution over time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech">
+      <div class="container">
+        <h2 class="section-title">Built with</h2>
+        <p class="tech-subtitle"><strong>Expo</strong> + <strong>bolt.new</strong> — fast iteration with agents.</p>
+        <div class="tech-tags">
+          <span class="tech-tag tech-tag-highlight">Cursor</span>
+          <span class="tech-tag tech-tag-highlight">bolt.new</span>
+          <span class="tech-tag">React Native</span>
+          <span class="tech-tag">Expo</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Supabase</span>
+          <span class="tech-tag">expo-router</span>
+          <span class="tech-tag">React Native Web</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>identifit — A fashion & style tracking app</p>
+  </footer>
+
+  <a href="https://www.linkedin.com/in/michelle-kim-760949256/" target="_blank" rel="noopener noreferrer" class="floating-credit">
+    <img src="identifit.png" alt="" />
+    <span class="credit-text">
+      <span class="credit-label">Designed in collaboration with</span>
+      <span class="credit-name">Michelle Kim</span>
+    </span>
+  </a>
+
+  <script>
+    // Demo link goes to ./app/ (the Expo web build)
+    // Run "npm run demo:build" to refresh the app after code changes
+  </script>
+</body>
+</html>
